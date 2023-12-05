@@ -1,0 +1,1 @@
+/Users/guojunxian/StudioProjects/FlutterGetxMVVM/android/buildSrc/build/classes/kotlin/main/Deps.class:/Users/guojunxian/StudioProjects/FlutterGetxMVVM/android/buildSrc/build/classes/kotlin/main/Versions.class

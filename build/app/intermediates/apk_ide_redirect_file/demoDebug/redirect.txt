@@ -1,0 +1,2 @@
+#- File Locator -
+listingFile=../../../outputs/apk/demo/debug/output-metadata.json
