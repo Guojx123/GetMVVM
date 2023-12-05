@@ -1,7 +1,7 @@
-import 'package:flutterdemo/theme/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/mvvm/base/base_controller.dart';
+import 'package:flutterdemo/theme/app_theme.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
 import 'package:flutterdemo/widget/image_extended.dart';
 import 'package:flutterdemo/widget/text/text_common.dart';

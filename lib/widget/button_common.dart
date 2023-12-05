@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:flutterdemo/theme/app_theme.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
 import 'package:flutterdemo/util/extension/widget_extension.dart';
 import 'package:flutterdemo/util/margin_padding_util.dart';
 import 'package:flutterdemo/widget/text/text_common.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ButtonCommon extends StatelessWidget {
@@ -112,7 +112,8 @@ class OutlineButtonCommon extends StatelessWidget {
                 BoxDecoration(
                     color: backgroundColor ?? Colors.transparent,
                     border: Border.all(
-                        color: backgroundColor ?? AppTheme.themeColor.textPrimary,
+                        color:
+                            backgroundColor ?? AppTheme.themeColor.textPrimary,
                         width: borderWidth ?? 1),
                     borderRadius: BorderRadius.circular(borderRadios ?? 5)),
             child: TextCommon(

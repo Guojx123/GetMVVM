@@ -9,7 +9,6 @@ abstract class HttpTransformer {
 }
 
 class DefaultHttpTransformer extends HttpTransformer {
-
   static List<int> successCode = [
     // 业务成功
     0,
@@ -17,7 +16,7 @@ class DefaultHttpTransformer extends HttpTransformer {
 
   @override
   HttpResponse parse(Response response) {
-    int code = response.data['code'];
+    final int code = response.data['code'];
     if (!successCode.contains(code)) {
       return HttpResponse.failure(
           errorCode: code, errorMsg: response.data['message']);

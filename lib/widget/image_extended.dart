@@ -3,7 +3,6 @@ import 'dart:typed_data';
 
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutterdemo/widget/my_click_event.dart';
 
 class ImageNetwork extends StatelessWidget {
@@ -19,7 +18,7 @@ class ImageNetwork extends StatelessWidget {
   final Color? color;
   final BlendMode? colorBlendMode;
 
-  ImageNetwork(this.url,
+  const ImageNetwork(this.url,
       {this.size,
       this.width,
       this.height,
@@ -49,7 +48,6 @@ class ImageNetwork extends StatelessWidget {
                   width: size ?? width,
                   height: size ?? height,
                   child: CupertinoActivityIndicator());
-              break;
             case LoadState.failed:
               return avatar
                   ? ImageCommon('avatar_default', size: size)
@@ -60,10 +58,8 @@ class ImageNetwork extends StatelessWidget {
                       child: ImageCommon('image_fail',
                           size: (size ?? width ?? height ?? 0) * 0.8),
                     );
-              break;
             default:
               return null;
-              break;
           }
         },
         mode: ExtendedImageMode.gesture,
@@ -89,7 +85,7 @@ class ImageAsset extends StatelessWidget {
   final BoxFit fit;
   final VoidCallback? onPress;
 
-  ImageAsset(this.asset,
+  const ImageAsset(this.asset,
       {this.size,
       this.width,
       this.height,
@@ -119,10 +115,8 @@ class ImageAsset extends StatelessWidget {
               child: ImageCommon('image_fail',
                   size: (size ?? width ?? height ?? 0) * 0.8),
             );
-            break;
           default:
             return null;
-            break;
         }
       },
     );
@@ -139,7 +133,7 @@ class ImageFile extends StatelessWidget {
   final bool circle;
   final BoxFit fit;
 
-  ImageFile(this.path,
+  const ImageFile(this.path,
       {this.size,
       this.width,
       this.height,
@@ -167,10 +161,8 @@ class ImageFile extends StatelessWidget {
               child: ImageCommon('image_fail',
                   size: (size ?? width ?? height ?? 0) * 0.8),
             );
-            break;
           default:
             return null;
-            break;
         }
       },
     );
@@ -187,7 +179,7 @@ class ImageMemory extends StatelessWidget {
   final bool circle;
   final BoxFit fit;
 
-  ImageMemory(this.bytes,
+  const ImageMemory(this.bytes,
       {this.size,
       this.width,
       this.height,
@@ -215,10 +207,8 @@ class ImageMemory extends StatelessWidget {
               child: ImageCommon('image_fail',
                   size: (size ?? width ?? height ?? 0) * 0.8),
             );
-            break;
           default:
             return null;
-            break;
         }
       },
     );

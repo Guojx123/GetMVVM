@@ -12,9 +12,10 @@ abstract class BaseListViewModel<T> extends BaseController {
   }
 
   // 下拉刷新
+  @override
   Future refresh({bool init = false}) async {
     try {
-      List<T> data = await loadData();
+      final List<T> data = await loadData();
       if (data.isEmpty) {
         list.clear();
         setEmpty();
@@ -24,7 +25,6 @@ abstract class BaseListViewModel<T> extends BaseController {
         onCompleted(data);
         setIdle();
       }
-
     } catch (e, s) {
       if (init) list.clear();
       setError(e, s);

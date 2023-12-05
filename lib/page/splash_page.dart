@@ -1,10 +1,7 @@
-import 'dart:io';
-
-import 'package:flutterdemo/config/route_config.dart';
+import 'package:flutter/material.dart';
 import 'package:flutterdemo/page/main/main_page.dart';
 import 'package:flutterdemo/util/http/http_client.dart';
 import 'package:flutterdemo/util/http/http_exception.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SplashPage extends StatefulWidget {
@@ -36,11 +33,12 @@ class SplashPageState extends State<SplashPage> {
   Future<void> test() async {
     final client = Get.find<HttpClient>();
     try {
-      await client.get("http://bapi.speediance.top/api/bapp/login/recentlyLoggedUser");
+      await client
+          .get("http://bapi.speediance.top/api/bapp/login/recentlyLoggedUser");
       // await client.get("http://www.baidu.com/my");
     } on HttpException catch (e) {
-      print("koma===e:${e.message}");
+      debugPrint("koma===e:${e.message}");
     }
-    Get.to(MainPage());
+    Get.off(MainPage());
   }
 }

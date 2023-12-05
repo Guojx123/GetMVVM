@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/mvvm/view_state.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
@@ -6,7 +5,6 @@ import 'package:flutterdemo/widget/dialog/dialog_helper.dart';
 import 'package:get/get.dart';
 
 class BaseController extends GetxController {
-
   String updateRootID = "updateRootID";
 
   /// 防止页面销毁后,异步任务才完成,导致报错
@@ -66,10 +64,7 @@ class BaseController extends GetxController {
     if (e.toString().contains("NotSuccessException")) {
       return;
     }
-    ErrorType errorType = ErrorType.defaultError;
-    if (e is DioError) {
-      e = e.error;
-    }
+    const ErrorType errorType = ErrorType.defaultError;
     viewState = ViewState.error;
     _viewStateError = ViewStateError(
       errorType,
@@ -100,9 +95,11 @@ void printErrorStack(dynamic e, dynamic s) {
 <-----↓↓↓↓↓↓↓↓↓↓-----error-----↓↓↓↓↓↓↓↓↓↓----->
 $e
 <-----↑↑↑↑↑↑↑↑↑↑-----error-----↑↑↑↑↑↑↑↑↑↑----->''');
-  if (s != null) debugPrint('''
+  if (s != null) {
+    debugPrint('''
 <-----↓↓↓↓↓↓↓↓↓↓-----trace-----↓↓↓↓↓↓↓↓↓↓----->
 $s
 <-----↑↑↑↑↑↑↑↑↑↑-----trace-----↑↑↑↑↑↑↑↑↑↑----->
     ''');
+  }
 }

@@ -1,10 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:flutterdemo/theme/app_theme.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
 import 'package:flutterdemo/util/extension/widget_extension.dart';
 import 'package:flutterdemo/util/margin_padding_util.dart';
 import 'package:flutterdemo/widget/text/text_common.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
@@ -36,10 +35,11 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
                   color: AppTheme.themeColor.textPrimary,
                 ),
               ).addClickEvent(() {
-                if (leftClick == null)
+                if (leftClick == null) {
                   Get.back();
-                else
+                } else {
                   leftClick!.call();
+                }
               }),
               TextCommon(
                 title,

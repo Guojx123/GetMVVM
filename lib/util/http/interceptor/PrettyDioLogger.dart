@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:dio/dio.dart';
 
 class PrettyDioLogger extends Interceptor {
@@ -68,7 +69,7 @@ class PrettyDioLogger extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     if (canShowLog) {
       try {
         _logOnError(err);
@@ -109,18 +110,18 @@ class PrettyDioLogger extends Interceptor {
       requestHeaders['followRedirects'] = options.followRedirects;
       requestHeaders['connectTimeout'] = options.connectTimeout?.inMilliseconds;
       requestHeaders['receiveTimeout'] = options.receiveTimeout?.inMilliseconds;
-      String json = _encoder.convert(requestHeaders);
+      final String json = _encoder.convert(requestHeaders);
       _defaultLog('[---requestHeader---]\n$json');
     }
     if (queryParameters) {
-      String json = _encoder.convert(options.queryParameters);
+      final String json = _encoder.convert(options.queryParameters);
       _defaultLog('[---queryParameters---]\n$json');
     }
     if (requestBody) {
       _defaultLog('[---requestBody---]');
       final dynamic data = options.data;
       if (data is Map) {
-        String json = _encoder.convert(options.data);
+        final String json = _encoder.convert(options.data);
         _defaultLog(json);
       }
       if (data is FormData) {
@@ -135,8 +136,8 @@ class PrettyDioLogger extends Interceptor {
     }
   }
 
-  void _logOnError(DioError err) {
-    _logBlock(isBegin: true, type: 'onError');
+  void _logOnError(DioException err) {
+    _logBlock(type: 'onError');
     if (error) {
       final uri = err.requestOptions.uri;
       _defaultLog(
@@ -151,7 +152,7 @@ class PrettyDioLogger extends Interceptor {
   }
 
   void _logOnResponse(Response response) {
-    _logBlock(isBegin: true, type: 'onResponse');
+    _logBlock(type: 'onResponse');
     final uri = response.requestOptions.uri;
     final method = response.requestOptions.method;
     _defaultLog(
@@ -162,12 +163,12 @@ class PrettyDioLogger extends Interceptor {
       final responseHeaders = <String, String>{};
       response.headers
           .forEach((k, list) => responseHeaders[k] = list.toString());
-      String json = _encoder.convert(responseHeaders);
+      final String json = _encoder.convert(responseHeaders);
       _defaultLog('[---responseHeader---]\n$json');
     }
 
     if (responseBody) {
-      String json = _encoder.convert(response.data);
+      final String json = _encoder.convert(response.data);
       _defaultLog('[---responseBody---]\n$json');
     }
     _logProcessingTime();
@@ -175,7 +176,7 @@ class PrettyDioLogger extends Interceptor {
   }
 
   void _cURLRepresentation(RequestOptions options) {
-    List<String> components = ['curl -i'];
+    final List<String> components = ['curl -i'];
     components.add('-X ${options.method}');
 
     options.headers.forEach((k, v) {
@@ -210,7 +211,7 @@ class PrettyDioLogger extends Interceptor {
 
     components.add('"${options.uri.toString()}"');
 
-    String cURL = components.join(' \\\n\t');
+    final String cURL = components.join(' \\\n\t');
     _defaultLog('[---cURL---]\n$cURL');
   }
 

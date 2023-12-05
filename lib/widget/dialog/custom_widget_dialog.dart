@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class CustomWidgetDialog extends Dialog {
   final Widget? widget;
 
-  CustomWidgetDialog({@required this.widget, Key? key}) : super(key: key);
+  const CustomWidgetDialog({
+    @required this.widget,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

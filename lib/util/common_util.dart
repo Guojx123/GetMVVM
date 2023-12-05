@@ -1,13 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutterdemo/util/sp_util/shared_preferences.dart';
 import 'package:flutterdemo/util/sp_util/sp_key.dart';
-import 'package:connectivity/connectivity.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CommonUtils {
-
   static Future updateLocale(Locale? locale) async {
-    late var l;
+    late Locale l;
     if (locale == null) {
       if (SPUtils().getString(SpKey.LANGUAGE) != "zh_CN") {
         l = Locale('zh', 'CN');

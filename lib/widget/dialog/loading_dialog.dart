@@ -4,11 +4,10 @@ import 'package:flutterdemo/util/extension/extension_util.dart';
 import 'package:flutterdemo/util/margin_padding_util.dart';
 import 'package:flutterdemo/widget/text/text_common.dart';
 
-// ignore: must_be_immutable
 class LoadingDialog extends Dialog {
-  String text;
+  final String text;
 
-  LoadingDialog({Key? key, required this.text}) : super(key: key);
+  const LoadingDialog({Key? key, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +25,8 @@ class LoadingDialog extends Dialog {
                 width: 34.sp,
                 height: 34.sp,
                 child: CircularProgressIndicator(
-                    valueColor:
-                        AlwaysStoppedAnimation(ColorsHelper.primaryColor),
-                    strokeWidth: 4),
+                  valueColor: AlwaysStoppedAnimation(ColorsHelper.primaryColor),
+                ),
               ),
               16.widthBox,
               TextCommon(text, color: Colors.white)

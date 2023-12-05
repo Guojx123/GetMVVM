@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 class DioLogger extends Interceptor {
   final bool request;
@@ -66,9 +64,9 @@ class DioLogger extends Interceptor {
   }
 
   @override
-  Future onError(DioError err, ErrorInterceptorHandler handler) async {
+  Future onError(DioException err, ErrorInterceptorHandler handler) async {
     if (error) {
-      if (err.type == DioErrorType.badResponse) {
+      if (err.type == DioExceptionType.badResponse) {
         final uri = err.response?.requestOptions.uri;
         _printBoxed(
             header:
@@ -149,8 +147,7 @@ class DioLogger extends Interceptor {
     _printBoxed(header: 'Request ║ $method ', text: uri.toString());
   }
 
-  void _printLine([String pre = '', String suf = '╝']) =>
-      logPrint('$pre${'═' * maxWidth}');
+  void _printLine([String pre = '']) => logPrint('$pre${'═' * maxWidth}');
 
   void _printKV(String key, Object v) {
     final pre = '╟ $key: ';
@@ -175,8 +172,12 @@ class DioLogger extends Interceptor {
 
   String _indent([int tabCount = initialTab]) => tabStep * tabCount;
 
-  void _printPrettyMap(Map data,
-      {int tabs = initialTab, bool isListItem = false, bool isLast = false}) {
+  void _printPrettyMap(
+    Map data, {
+    int tabs = initialTab,
+    bool isListItem = false,
+    bool isLast = false,
+  }) {
     final bool isRoot = tabs == initialTab;
     final initialIndent = _indent(tabs);
     tabs++;
@@ -186,7 +187,7 @@ class DioLogger extends Interceptor {
     data.keys.toList().asMap().forEach((index, key) {
       final isLast = index == data.length - 1;
       var value = data[key];
-//      key = '\"$key\"';
+      // key = '\"$key\"';
       if (value is String) {
         value = '\"${value.toString().replaceAll(RegExp(r'(\r|\n)+'), " ")}\"';
       }
@@ -210,7 +211,7 @@ class DioLogger extends Interceptor {
         final indent = _indent(tabs);
         final linWidth = maxWidth - indent.length;
         if (msg.length + indent.length > linWidth) {
-          int lines = (msg.length / linWidth).ceil();
+          final int lines = (msg.length / linWidth).ceil();
           for (int i = 0; i < lines; ++i) {
             logPrint(
                 '║${_indent(tabs)} ${msg.substring(i * linWidth, math.min<int>(i * linWidth + linWidth, msg.length))}');

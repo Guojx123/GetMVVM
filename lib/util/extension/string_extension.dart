@@ -3,6 +3,12 @@ import 'package:flutterdemo/util/log_util.dart';
 import 'package:flutterdemo/util/toast_util.dart';
 
 extension StringExtension on String {
+  bool get isNullOrEmpty {
+    if (this == null) return true;
+    // 利用trim()去除字符串两端的空格后判断长度
+    return trim().isEmpty;
+  }
+
   double get parseDouble {
     return double.tryParse(this) ?? 0.0;
   }
@@ -23,12 +29,12 @@ extension StringExtension on String {
     if (this != "") ToastUtil.showTips(this);
   }
 
-  void logd() {
+  void log() {
     if (this != "") LogUtil.d(this);
   }
 
   void printString() {
-    if (this != "") debugPrint("$this");
+    if (this != "") debugPrint(this);
   }
 
   //字符转换成Color对象
@@ -43,5 +49,4 @@ extension StringExtension on String {
     }
     return color;
   }
-
 }

@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/mvvm/base/base_controller.dart';
 import 'package:flutterdemo/page/main/data/login_bean.dart';
@@ -12,9 +9,8 @@ class MainController extends BaseController {
   LoginBean? bean = LoginBean();
   late MainService _mainService;
 
-
-  MainController(){
-   print("koma===MainController");
+  MainController() {
+    debugPrint("koma===MainController");
   }
 
   @override

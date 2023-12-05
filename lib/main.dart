@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutterdemo/config/route_config.dart';
 import 'package:flutterdemo/intl/intl_msg.dart';
 import 'package:flutterdemo/page/splash_page.dart';
@@ -8,12 +12,7 @@ import 'package:flutterdemo/util/http/http_config.dart';
 import 'package:flutterdemo/util/method_channel_util.dart';
 import 'package:flutterdemo/util/sp_util/shared_preferences.dart';
 import 'package:flutterdemo/util/sp_util/sp_key.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 void main() async {
@@ -34,8 +33,8 @@ void main() async {
 
   /// 竖屏
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  SystemChrome.setEnabledSystemUIOverlays(
-      [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light));

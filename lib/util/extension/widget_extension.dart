@@ -32,13 +32,13 @@ extension WidgetExtension on Widget {
         ? MyGestureDetector(
             onTap: onPress,
             mill: mill,
-            child: this,
             behavior: behavior,
+            child: this,
           )
         : GestureDetector(
             onTap: onPress,
-            child: this,
             behavior: behavior,
+            child: this,
           );
   }
 }

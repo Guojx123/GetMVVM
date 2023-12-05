@@ -100,7 +100,8 @@ class _BaseScaffoldState extends State<BaseScaffold> {
         endDrawer: widget.endDrawer,
         bottomNavigationBar: widget.bottomNavigationBar,
         bottomSheet: widget.bottomSheet,
-        backgroundColor: widget.backgroundColor ?? AppTheme.themeColor.textPrimary,
+        backgroundColor:
+            widget.backgroundColor ?? AppTheme.themeColor.textPrimary,
         resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
         primary: widget.primary,
         drawerDragStartBehavior: widget.drawerDragStartBehavior,
@@ -119,9 +120,9 @@ class _BaseScaffoldState extends State<BaseScaffold> {
     if (widget.onBack != null) {
       widget.onBack!();
     }
-
+    final bool isExist = SmartDialog.config.checkExist();
     //处理弹窗问题
-    if (SmartDialog.config.isExist) {
+    if (isExist) {
       SmartDialog.dismiss();
       return false;
     }

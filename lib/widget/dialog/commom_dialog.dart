@@ -1,10 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:flutterdemo/theme/app_theme.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
 import 'package:flutterdemo/util/extension/widget_extension.dart';
 import 'package:flutterdemo/util/margin_padding_util.dart';
 import 'package:flutterdemo/widget/text/text_common.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CommonDialog extends StatelessWidget {
   final String title;
@@ -39,7 +38,7 @@ class CommonDialog extends StatelessWidget {
             height: 1.height,
             color: AppTheme.themeColor.textPrimary,
           ),
-          Container(
+          SizedBox(
             height: 80.height,
             child: Row(
               children: [

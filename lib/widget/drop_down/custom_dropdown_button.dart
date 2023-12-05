@@ -1,6 +1,5 @@
-
-import 'package:flutterdemo/widget/drop_down/dropdown_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/widget/drop_down/dropdown_button.dart';
 
 class CustomDropdownButton2 extends StatelessWidget {
   final String hint;
@@ -80,19 +79,19 @@ class CustomDropdownButton2 extends StatelessWidget {
         value: value,
         items: dropdownItems
             .map((item) => DropdownMenuItem<String>(
-          value: item,
-          child: Container(
-            alignment: valueAlignment,
-            child: Text(
-              item,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: const TextStyle(
-                fontSize: 14,
-              ),
-            ),
-          ),
-        ))
+                  value: item,
+                  child: Container(
+                    alignment: valueAlignment,
+                    child: Text(
+                      item,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ))
             .toList(),
         onChanged: onChanged,
         selectedItemBuilder: selectedItemBuilder,
@@ -103,7 +102,7 @@ class CustomDropdownButton2 extends StatelessWidget {
         buttonHeight: buttonHeight ?? 40,
         buttonWidth: buttonWidth ?? 140,
         buttonPadding:
-        buttonPadding ?? const EdgeInsets.only(left: 14, right: 14),
+            buttonPadding ?? const EdgeInsets.only(left: 14, right: 14),
         buttonDecoration: buttonDecoration ??
             BoxDecoration(
               borderRadius: BorderRadius.circular(14),
@@ -126,7 +125,6 @@ class CustomDropdownButton2 extends StatelessWidget {
         scrollbarThickness: scrollbarThickness,
         scrollbarAlwaysShow: scrollbarAlwaysShow,
         offset: offset,
-        dropdownOverButton: false,
       ),
     );
   }

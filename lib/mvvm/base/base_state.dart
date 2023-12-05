@@ -9,7 +9,7 @@ abstract class BaseState<BC extends BaseController> extends GetView<BC> {
       initState: (GetBuilderState<BC> state) {
         _initState(context);
         initState.call(state);
-        print("koma===initState");
+        debugPrint("koma===initState");
       },
       builder: (BC controller) {
         return initView(context);

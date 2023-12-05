@@ -4,20 +4,26 @@ import 'package:flutterdemo/page/main/controller/main_controller.dart';
 import 'package:flutterdemo/theme/app_theme.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
 import 'package:flutterdemo/util/extension/widget_extension.dart';
+import 'package:flutterdemo/widget/base/base_scaffold.dart';
+import 'package:flutterdemo/widget/common/common_app_bar.dart';
 import 'package:flutterdemo/widget/text/text_common.dart';
 import 'package:get/get.dart';
 
 class MainPage extends BaseState<MainController> {
   @override
   Widget initView(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Column(
+    return BaseScaffold(
+      backgroundColor: Colors.white,
+      appBar: CommonAppBar(
+        title: "首页",
+        canBack: false,
+      ),
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           100.heightBox,
           TextCommon(
-            "text".tr,
+            "text  Gino".tr,
             color: Colors.red,
           ).addClickEvent(
             () async {

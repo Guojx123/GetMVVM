@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutterdemo/mvvm/base/base_list_view_model.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
@@ -11,8 +12,6 @@ abstract class BaseRefreshListModel<T> extends BaseListViewModel<T> {
 
   /// 分页第一页数据下标
   // static const int pageNumFirst = 0;
-
-
 
   ///是否可以上拉加载更多数据
   static const bool canLoadMore = true;
@@ -29,6 +28,7 @@ abstract class BaseRefreshListModel<T> extends BaseListViewModel<T> {
   /// [init] 是否是第一次加载
   /// true:  Error时,需要跳转页面
   /// false: Error时,不需要跳转页面,直接给出提示
+  @override
   Future<List<T>> refresh({bool init = false}) async {
     try {
       _currentPageNum = pageNumFirst;
@@ -66,7 +66,7 @@ abstract class BaseRefreshListModel<T> extends BaseListViewModel<T> {
   Future<List<T>> loadMore() async {
     try {
       _currentPageNum = _currentPageNum + 1;
-      var data = await loadData(pageNum: _currentPageNum);
+      final data = await loadData(pageNum: _currentPageNum);
       if (data.isEmpty) {
         _currentPageNum = _currentPageNum - 1;
         if (_currentPageNum < 0) _currentPageNum = 0;
@@ -84,8 +84,8 @@ abstract class BaseRefreshListModel<T> extends BaseListViewModel<T> {
     } catch (e, s) {
       _currentPageNum = _currentPageNum - _currentPageNum * pageSize;
       refreshController.loadFailed();
-      print('error--->\n' + e.toString());
-      print('statck--->\n' + s.toString());
+      debugPrint('error--->\n$e');
+      debugPrint('statck--->\n$s');
       return [];
     }
   }

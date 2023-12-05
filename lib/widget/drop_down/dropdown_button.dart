@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -12,7 +13,11 @@ const EdgeInsetsGeometry _kAlignedButtonPadding =
     EdgeInsetsDirectional.only(start: 16.0, end: 4.0);
 const EdgeInsets _kUnalignedButtonPadding = EdgeInsets.zero;
 
-typedef _OnMenuStateChangeFn = void Function(bool isOpen);
+// typedef _OnMenuStateChangeFn = void Function(bool isOpen);
+
+typedef MenuChangeCallback = void Function(MenuState state);
+
+enum MenuState { open, closed }
 
 typedef _SearchMatchFn = bool Function(
   DropdownMenuItem item,
@@ -1087,7 +1092,6 @@ class DropdownButton2<T> extends StatefulWidget {
           'with the same value',
         );
 
-
   /// The height of the button.
   final double? buttonHeight;
 
@@ -1167,7 +1171,7 @@ class DropdownButton2<T> extends StatefulWidget {
   final Widget? iconOnClick;
 
   /// Called when the dropdown menu is opened or closed.
-  final _OnMenuStateChangeFn? onMenuStateChange;
+  final MenuChangeCallback? onMenuStateChange;
 
   /// Whether you can dismiss this route by tapping the modal barrier.
   final bool barrierDismissible;
@@ -1379,7 +1383,7 @@ class DropdownButton2<T> extends StatefulWidget {
 
   /// Called when the dropdown menu is opened or closed in case of using
   /// DropdownButtonFormField2 to update the FormField's focus.
-  final _OnMenuStateChangeFn? formFieldCallBack;
+  final MenuChangeCallback? formFieldCallBack;
 
   @override
   State<DropdownButton2<T>> createState() => DropdownButton2State<T>();
@@ -1492,7 +1496,7 @@ class DropdownButton2State<T> extends State<DropdownButton2<T>>
   }
 
   TextStyle? get _textStyle =>
-      widget.style ?? Theme.of(context).textTheme.subtitle1;
+      widget.style ?? Theme.of(context).textTheme.titleMedium;
 
   Rect _getRect() {
     final TextDirection? textDirection = Directionality.maybeOf(context);
@@ -1569,14 +1573,14 @@ class DropdownButton2State<T> extends State<DropdownButton2<T>>
         .then<void>((_DropdownRouteResult<T>? newValue) {
       _removeDropdownRoute();
       _isMenuOpen = false;
-      widget.onMenuStateChange?.call(false);
-      widget.formFieldCallBack?.call(false);
+      widget.onMenuStateChange?.call(MenuState.closed);
+      widget.formFieldCallBack?.call(MenuState.closed);
       if (!mounted || newValue == null) return;
       widget.onChanged?.call(newValue.result);
     });
 
-    widget.onMenuStateChange?.call(true);
-    widget.formFieldCallBack?.call(true);
+    widget.onMenuStateChange?.call(MenuState.open);
+    widget.formFieldCallBack?.call(MenuState.open);
   }
 
   void callTap() => _handleTap();
@@ -1584,7 +1588,7 @@ class DropdownButton2State<T> extends State<DropdownButton2<T>>
   double get _denseButtonHeight {
     final double textScaleFactor = MediaQuery.of(context).textScaleFactor;
     final double fontSize = _textStyle!.fontSize ??
-        Theme.of(context).textTheme.subtitle1!.fontSize!;
+        Theme.of(context).textTheme.titleMedium!.fontSize!;
     final double scaledFontSize = textScaleFactor * fontSize;
     return math.max(
         scaledFontSize, math.max(widget.iconSize, _kDenseButtonHeight));
@@ -1620,7 +1624,9 @@ class DropdownButton2State<T> extends State<DropdownButton2<T>>
   Orientation _getOrientation(BuildContext context) {
     Orientation? result = MediaQuery.maybeOf(context)?.orientation;
     if (result == null) {
-      final Size size = WidgetsBinding.instance.window.physicalSize;
+      final MediaQueryData queryData = MediaQueryData.fromView(
+          WidgetsBinding.instance.platformDispatcher.implicitView!);
+      final Size size = queryData.size;
       result = size.width > size.height
           ? Orientation.landscape
           : Orientation.portrait;
@@ -1652,7 +1658,7 @@ class DropdownButton2State<T> extends State<DropdownButton2<T>>
       items.add(DefaultTextStyle(
         style: _textStyle!.copyWith(color: Theme.of(context).hintColor),
         child: IgnorePointer(
-          ignoringSemantics: false,
+          ignoring: false,
           child: _DropdownMenuItemContainer(
             alignment: widget.alignment,
             child: displayedHint,
@@ -1773,9 +1779,9 @@ class DropdownButton2State<T> extends State<DropdownButton2<T>>
           highlightColor: widget.buttonHighlightColor,
           overlayColor: widget.buttonOverlayColor,
           enableFeedback: false,
-          child: result,
           borderRadius: widget.buttonDecoration?.borderRadius
               ?.resolve(Directionality.of(context)),
+          child: result,
         ),
       ),
     );
@@ -1865,7 +1871,7 @@ class DropdownButtonFormField2<T> extends FormField<T> {
     TextEditingController? searchController,
     Widget? searchInnerWidget,
     _SearchMatchFn? searchMatchFn,
-    _OnMenuStateChangeFn? onMenuStateChange,
+    MenuChangeCallback? onMenuStateChange,
   })  : assert(
           items == null ||
               items.isEmpty ||
@@ -1980,8 +1986,8 @@ class DropdownButtonFormField2<T> extends FormField<T> {
                         searchController: searchController,
                         searchInnerWidget: searchInnerWidget,
                         searchMatchFn: searchMatchFn,
-                        formFieldCallBack: (isOpen) {
-                          hasFocus = isOpen;
+                        formFieldCallBack: (status) {
+                          hasFocus = MenuState.open == status;
                           setState(() {});
                         },
                       ),

@@ -1,6 +1,6 @@
-import 'package:flutterdemo/widget/dialog/commom_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:flutterdemo/widget/dialog/commom_dialog.dart';
 
 class DialogHelper {
   static void showCustomWidgetDialog(WidgetBuilder widget,
@@ -33,7 +33,6 @@ class DialogHelper {
   static void showLoading({String? title}) {
     SmartDialog.showLoading(msg: title ?? "");
   }
-
 
   static Future<void> dismiss() => SmartDialog.dismiss();
 }

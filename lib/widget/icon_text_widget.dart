@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutterdemo/theme/app_theme.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
 import 'package:flutterdemo/widget/image_extended.dart';
 import 'package:flutterdemo/widget/text/text_common.dart';
-import 'package:flutter/material.dart';
 
 class IconTextWidget extends StatelessWidget {
   final String iconUrl;

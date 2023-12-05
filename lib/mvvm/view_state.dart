@@ -31,4 +31,4 @@ class ViewStateError {
   }
 }
 
-//enum ConnectivityStatus { WiFi, Cellular, Offline }
+enum ConnectivityStatus { WiFi, Cellular, Offline }

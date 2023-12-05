@@ -18,16 +18,17 @@ extension IntFit on int {
       Future.delayed(Duration(milliseconds: this));
 
   String toFixed(int decimalPlace) {
-    String result = "";
+    final buffer = StringBuffer();
     final List<String> strList = toString().split(".");
     if (strList[1].length < decimalPlace) {
-      result = toString();
+      buffer.toString();
       for (int i = strList[1].length; i < decimalPlace; i++) {
-        result += "0";
+        buffer.write("0");
       }
     } else {
-      result = "${strList[0]}.${strList[1].substring(0, max(decimalPlace, strList[1].length))}";
+      buffer.write(
+          "${strList[0]}.${strList[1].substring(0, max(decimalPlace, strList[1].length))}");
     }
-    return result;
+    return buffer.toString();
   }
 }

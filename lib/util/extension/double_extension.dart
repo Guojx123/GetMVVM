@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,17 +13,17 @@ extension DoubleFit on double {
   SizedBox get widthBox => SizedBox(width: width);
 
   String toFixed(int decimalPlace) {
-    String result = "";
+    final buffer = StringBuffer();
     final List<String> strList = toString().split(".");
     if (strList[1].length < decimalPlace) {
-      result = toString();
+      buffer.toString();
       for (int i = strList[1].length; i < decimalPlace; i++) {
-        result += "0";
+        buffer.write("0");
       }
     } else {
-      result = "${strList[0]}.${strList[1].substring(0, decimalPlace)}";
+      buffer.write("${strList[0]}.${strList[1].substring(0, decimalPlace)}");
     }
-    return result;
+    return buffer.toString();
   }
 
   int get getDoubleDots => toString().split(".")[1].length;

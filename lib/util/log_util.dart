@@ -14,7 +14,7 @@ class LogUtil {
   );
 
   /// 调试时，调用这个方法
-  static void d(dynamic message,{String tag = ""}) {
+  static void d(dynamic message, {String tag = ""}) {
     if (!Config.isDebug) return;
     _logger.d("$tag:$message");
   }
@@ -31,14 +31,14 @@ class LogUtil {
   }
 
   static String _normalPrint(String message) {
-    debugPrint("$message");
+    debugPrint(message);
     return "";
   }
 
   static const _separator = "=";
   static const _split =
       "$_separator$_separator$_separator$_separator$_separator$_separator$_separator$_separator$_separator";
-  static var _title = "Yl-Log";
+  static var _title = "Gino-Log";
   static var _isDebug = true;
   static int _limitLength = 800;
   static String _startLine = "$_split$_title$_split";
@@ -76,13 +76,13 @@ class LogUtil {
 
   static void _log(String msg) {
     debugPrint(_startLine);
-    _logEmpyLine();
+    _logEmptyLine();
     if (msg.length < _limitLength) {
       debugPrint(msg);
     } else {
       segmentationLog(msg);
     }
-    _logEmpyLine();
+    _logEmptyLine();
     debugPrint(_endLine);
   }
 
@@ -103,7 +103,7 @@ class LogUtil {
     }
   }
 
-  static void _logEmpyLine() {
+  static void _logEmptyLine() {
     debugPrint("");
   }
 }
