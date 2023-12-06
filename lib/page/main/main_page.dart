@@ -29,7 +29,8 @@ class MainPage extends BaseView<MainController> {
           100.heightBox,
           TextCommon(
             "text  Gino".tr,
-            color: Colors.cyanAccent,
+            size: 20,
+            color: Colors.pinkAccent,
           ).addClickEvent(
             () async {
               Log.d("测试");

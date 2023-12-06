@@ -3,7 +3,7 @@ import 'package:flutterdemo/theme/theme_color.dart';
 
 class DarkColor implements ThemeColor {
   @override
-  Color textPrimary = Colors.black;
+  Color textPrimary = Colors.white;
 
   Color mainBg = Color(0xFF1A212A);
 
