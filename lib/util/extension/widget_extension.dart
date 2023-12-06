@@ -26,8 +26,12 @@ extension WidgetExtension on Widget {
         child: this);
   }
 
-  Widget addClickEvent(VoidCallback onPress,
-      {bool useThrottle = true, int mill = 1000, HitTestBehavior? behavior}) {
+  Widget addClickEvent(
+    VoidCallback onPress, {
+    bool useThrottle = true,
+    int mill = 1000,
+    HitTestBehavior behavior = HitTestBehavior.translucent,
+  }) {
     return useThrottle
         ? MyGestureDetector(
             onTap: onPress,

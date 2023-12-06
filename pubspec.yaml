@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  get: ^4.6.5
+  get: ^5.0.0-release-candidate-5
   dio: ^5.4.0
   logger: ^1.2.2
   pull_to_refresh_flutter3: ^2.0.1

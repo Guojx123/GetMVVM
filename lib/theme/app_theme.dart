@@ -1,6 +1,5 @@
-import 'package:flutterdemo/util/common_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/theme/dark_theme.dart';
+import 'package:flutterdemo/theme/dark_color.dart';
 import 'package:flutterdemo/theme/light_color.dart';
 import 'package:flutterdemo/theme/theme_color.dart';
 import 'package:get/get.dart';
@@ -18,7 +17,8 @@ class AppTheme {
   static ThemeColor themeColor = _lightColor;
 
   /// 切换主题
-  static void changeThemeMode({ThemeMode themeMode = ThemeMode.system}) {
+  static Future<void> changeThemeMode(
+      {ThemeMode themeMode = ThemeMode.system}) async {
     /// 注意样式设置
     switch (themeMode) {
       case ThemeMode.system:

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:flutterdemo/config/route_config.dart';
+import 'package:flutterdemo/config/routers.dart';
 import 'package:flutterdemo/intl/intl_msg.dart';
 import 'package:flutterdemo/page/splash_page.dart';
 import 'package:flutterdemo/theme/app_theme.dart';
@@ -66,13 +66,14 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) => GetMaterialApp(
           theme: AppTheme.lightTheme,
+          themeMode: ThemeMode.light,
           locale: getLocale(),
           fallbackLocale: Locale("en", "US"),
           translations: IntlMsgs(),
-          getPages: RouteConfig.getPages,
+          getPages: Routers.getPages,
           navigatorObservers: [FlutterSmartDialog.observer],
           builder: FlutterSmartDialog.init(),
-          initialRoute: "/",
+          initialRoute: Routers.splash,
           home: child,
         ),
         child: SplashPage(),

@@ -4,7 +4,13 @@ import 'package:flutterdemo/util/extension/extension_util.dart';
 import 'package:flutterdemo/widget/dialog/dialog_helper.dart';
 import 'package:get/get.dart';
 
-class BaseController extends GetxController {
+abstract class BaseController extends GetxController {
+  @override
+  void onInit() {
+    super.onInit();
+    // 初始化状态
+  }
+
   String updateRootID = "updateRootID";
 
   /// 防止页面销毁后,异步任务才完成,导致报错

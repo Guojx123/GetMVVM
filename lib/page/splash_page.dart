@@ -39,6 +39,6 @@ class SplashPageState extends State<SplashPage> {
     } on HttpException catch (e) {
       debugPrint("koma===e:${e.message}");
     }
-    Get.off(MainPage());
+    Get.off(() => MainPage());
   }
 }

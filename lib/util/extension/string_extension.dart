@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/util/log_util.dart';
+import 'package:flutterdemo/util/log.dart';
 import 'package:flutterdemo/util/toast_util.dart';
 
 extension StringExtension on String {
@@ -30,7 +30,7 @@ extension StringExtension on String {
   }
 
   void log() {
-    if (this != "") LogUtil.d(this);
+    if (this != "") Log.d(this);
   }
 
   void printString() {

@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutterdemo/theme/app_theme.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
-import 'package:flutter/material.dart';
 
 class TextCommon extends StatelessWidget {
   final String text;
@@ -16,7 +16,7 @@ class TextCommon extends StatelessWidget {
   final double? lineHeight;
   final TextStyle? style;
   final TextAlign? align;
-  final Key? key;
+  final Key? keyValue;
   final FontWeight? fontWeight;
   final List<Shadow>? shadow;
   final TextOverflow? overflow;
@@ -33,7 +33,7 @@ class TextCommon extends StatelessWidget {
       this.decoration,
       this.lineHeight,
       this.style,
-      this.key,
+      this.keyValue,
       this.align,
       this.fontWeight,
       this.shadow,
@@ -41,10 +41,9 @@ class TextCommon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return ExtendedText(
     return Text(
       text,
-      key: key,
+      key: keyValue,
       textAlign: align,
       maxLines: maxLines,
       overflow: TextOverflow.ellipsis,
